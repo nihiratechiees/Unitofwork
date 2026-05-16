@@ -1,10 +1,18 @@
 using Microsoft.EntityFrameworkCore;
 using Unitofwork.Data;
+using Unitofwork.Repository.Implementation;
+using Unitofwork.Repository.Interface;
+using Unitofwork.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<TestDBContext>(options=>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("appconnection")));
+
+builder.Services.AddScoped<IOrderheaderrepository, Orderheaderrepository>();
+builder.Services.AddScoped<IOrderItemrepository, OrderItemRepository>();
+builder.Services.AddScoped<IUnitofWork, UnitofWork>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 // Add services to the container.
 

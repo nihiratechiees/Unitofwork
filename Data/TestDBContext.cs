@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Unitofwork.Model;
 
 namespace Unitofwork.Data
 {
@@ -7,6 +8,9 @@ namespace Unitofwork.Data
         public TestDBContext(DbContextOptions<TestDBContext> options) : base(options)
         {
         }
-        public DbSet<Model.Associate> Associates { get; set; }
+        public DbSet<Associate> Associates { get; set; }
+            public DbSet<OrderHeader> OrderHeaders { get; set; }
+            public DbSet<OrderItem> OrderItems { get; set; }
     }
+
 }
